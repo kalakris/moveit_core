@@ -48,7 +48,7 @@ CollisionWorldDistanceField::CollisionWorldDistanceField(double size_x,
                                                          bool use_signed_distance_field,
                                                          double resolution,
                                                          double collision_tolerance,
-                                                         double max_propogation_distance)
+                                                         double max_propagation_distance)
   : CollisionWorld(),
     size_x_(size_x),
     size_y_(size_y),
@@ -56,7 +56,7 @@ CollisionWorldDistanceField::CollisionWorldDistanceField(double size_x,
     use_signed_distance_field_(use_signed_distance_field),
     resolution_(resolution),
     collision_tolerance_(collision_tolerance),
-    max_propogation_distance_(max_propogation_distance)
+    max_propagation_distance_(max_propagation_distance)
 {  
   distance_field_cache_entry_ = generateDistanceFieldCacheEntry();
 }
@@ -70,7 +70,7 @@ CollisionWorldDistanceField::CollisionWorldDistanceField(const CollisionWorldDis
   use_signed_distance_field_ = other.use_signed_distance_field_;
   resolution_ = other.resolution_;
   collision_tolerance_ = other.collision_tolerance_;
-  max_propogation_distance_ = other.max_propogation_distance_;
+  max_propagation_distance_ = other.max_propagation_distance_;
   distance_field_cache_entry_ = generateDistanceFieldCacheEntry();
 }
 
@@ -321,7 +321,7 @@ bool CollisionWorldDistanceField::getEnvironmentCollisions(const CollisionReques
       bool coll = getCollisionSphereCollision(env_distance_field.get(),
                                               *collision_spheres_1,
                                               *sphere_centers_1,
-                                              max_propogation_distance_,
+                                              max_propagation_distance_,
                                               0.0,
                                               std::min(req.max_contacts_per_pair, req.max_contacts-res.contact_count),
                                               colls);
@@ -354,7 +354,7 @@ bool CollisionWorldDistanceField::getEnvironmentCollisions(const CollisionReques
       bool coll = getCollisionSphereCollision(env_distance_field.get(),
                                               *collision_spheres_1,
                                               *sphere_centers_1,
-                                              max_propogation_distance_,
+                                              max_propagation_distance_,
                                               false);
       if(coll) {
         res.collision = true;
@@ -388,7 +388,7 @@ bool CollisionWorldDistanceField::getEnvironmentProximityGradients(const boost::
                                             ENVIRONMENT,
                                             0.0,
                                             false,
-                                            max_propogation_distance_,
+                                            max_propagation_distance_,
                                             false);
     if(coll) {
       in_collision = true;
@@ -514,7 +514,7 @@ CollisionWorldDistanceField::generateDistanceFieldCacheEntry()
                                                                              -(size_x_/2.0), 
                                                                              -(size_y_/2.0), 
                                                                              -(size_z_/2.0), 
-                                                                             max_propogation_distance_, true));
+                                                                             max_propagation_distance_, true));
   }
   else
   {
@@ -525,7 +525,7 @@ CollisionWorldDistanceField::generateDistanceFieldCacheEntry()
                                                                              -(size_x_/2.0), 
                                                                              -(size_y_/2.0), 
                                                                              -(size_z_/2.0), 
-                                                                             max_propogation_distance_, false));
+                                                                             max_propagation_distance_, false));
   }
   EigenSTL::vector_Vector3d add_points;
   EigenSTL::vector_Vector3d subtract_points;

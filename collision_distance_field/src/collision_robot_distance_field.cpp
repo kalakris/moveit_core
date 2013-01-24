@@ -54,12 +54,12 @@ CollisionRobotDistanceField::CollisionRobotDistanceField(const kinematic_model::
                                                          bool use_signed_distance_field,
                                                          double resolution,
                                                          double collision_tolerance,
-                                                         double max_propogation_distance,
+                                                         double max_propagation_distance,
                                                          double padding, 
                                                          double scale)
   : CollisionRobot(kmodel, padding, scale)
 {  
-  initialize(link_body_decompositions, size_x, size_y, size_z, use_signed_distance_field, resolution, collision_tolerance, max_propogation_distance);
+  initialize(link_body_decompositions, size_x, size_y, size_z, use_signed_distance_field, resolution, collision_tolerance, max_propagation_distance);
 }
 
 CollisionRobotDistanceField::CollisionRobotDistanceField(const CollisionRobotDistanceField& other) :
@@ -71,7 +71,7 @@ CollisionRobotDistanceField::CollisionRobotDistanceField(const CollisionRobotDis
   use_signed_distance_field_ = other.use_signed_distance_field_;
   resolution_ = other.resolution_;
   collision_tolerance_ = other.collision_tolerance_;
-  max_propogation_distance_ = other.max_propogation_distance_;
+  max_propagation_distance_ = other.max_propagation_distance_;
   link_body_decomposition_vector_ = other.link_body_decomposition_vector_;
   link_body_decomposition_index_map_ = other.link_body_decomposition_index_map_;
   in_group_update_map_ = other.in_group_update_map_;
@@ -85,7 +85,7 @@ void CollisionRobotDistanceField::initialize(const std::map<std::string, std::ve
                                              bool use_signed_distance_field,
                                              double resolution,
                                              double collision_tolerance,
-                                             double max_propogation_distance)
+                                             double max_propagation_distance)
 {
   size_x_ = size_x;
   size_y_ = size_y;
@@ -93,7 +93,7 @@ void CollisionRobotDistanceField::initialize(const std::map<std::string, std::ve
   use_signed_distance_field_ = use_signed_distance_field;
   resolution_ = resolution;
   collision_tolerance_ = collision_tolerance;
-  max_propogation_distance_ = max_propogation_distance;
+  max_propagation_distance_ = max_propagation_distance;
   addLinkBodyDecompositions(resolution_, link_body_decompositions);  
   kinematic_state::KinematicState state(kmodel_);
   const std::map<std::string, kinematic_model::JointModelGroup*>& jmgm = kmodel_->getJointModelGroupMap();
@@ -243,7 +243,7 @@ bool CollisionRobotDistanceField::getSelfCollisions(const collision_detection::C
       bool coll = getCollisionSphereCollision(gsr->dfce_->distance_field_.get(),
                                               *collision_spheres_1,
                                               *sphere_centers_1,
-                                              max_propogation_distance_,
+                                              max_propagation_distance_,
                                               0.0,
                                               std::min(req.max_contacts_per_pair, req.max_contacts-res.contact_count),
                                               colls);
@@ -276,7 +276,7 @@ bool CollisionRobotDistanceField::getSelfCollisions(const collision_detection::C
       bool coll = getCollisionSphereCollision(gsr->dfce_->distance_field_.get(),
                                               *collision_spheres_1,
                                               *sphere_centers_1,
-                                              max_propogation_distance_,
+                                              max_propagation_distance_,
                                               0.0);
       if(coll) {
         logDebug("Link %s in self collision", gsr->dfce_->link_names_[i].c_str());
@@ -314,7 +314,7 @@ bool CollisionRobotDistanceField::getSelfProximityGradients(boost::shared_ptr<Gr
                                             collision_detection::SELF,
                                             0.0,
                                             false,
-                                            max_propogation_distance_,
+                                            max_propagation_distance_,
                                             false);
     if(coll) {
       in_collision = true;
@@ -692,7 +692,7 @@ CollisionRobotDistanceField::generateDistanceFieldCacheEntry(const std::string& 
                                                                                -(size_x_/2.0), 
                                                                                -(size_y_/2.0), 
                                                                                -(size_z_/2.0), 
-                                                                               max_propogation_distance_, true));
+                                                                               max_propagation_distance_, true));
     }
     else
     {
@@ -704,7 +704,7 @@ CollisionRobotDistanceField::generateDistanceFieldCacheEntry(const std::string& 
                                                                                -(size_x_/2.0), 
                                                                                -(size_y_/2.0), 
                                                                                -(size_z_/2.0), 
-                                                                               max_propogation_distance_, false));
+                                                                               max_propagation_distance_, false));
     }
     //ROS_INFO_STREAM("Creation took " << (ros::WallTime::now()-before_create).toSec());
     //TODO - deal with AllowedCollisionMatrix

@@ -53,7 +53,7 @@ CollisionRobotHybrid::CollisionRobotHybrid(const kinematic_model::KinematicModel
                                            bool use_signed_distance_field,
                                            double resolution,
                                            double collision_tolerance,
-                                           double max_propogation_distance,
+                                           double max_propagation_distance,
                                            double padding, 
                                            double scale) :
   CollisionRobotFCL(kmodel)
@@ -66,7 +66,7 @@ CollisionRobotHybrid::CollisionRobotHybrid(const kinematic_model::KinematicModel
                                                                               use_signed_distance_field,
                                                                               resolution,
                                                                               collision_tolerance,
-                                                                              max_propogation_distance,
+                                                                              max_propagation_distance,
                                                                               padding, 
                                                                               scale));
 }

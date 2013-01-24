@@ -53,7 +53,7 @@ public:
                        bool use_signed_distance_field = false,
                        double resolution = .02,
                        double collision_tolerance = 0.0,
-                       double max_propogation_distance = .25);
+                       double max_propagation_distance = .25);
 
   CollisionWorldHybrid(const CollisionWorldHybrid &other);
 

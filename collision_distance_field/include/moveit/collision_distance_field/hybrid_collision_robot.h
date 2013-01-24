@@ -62,7 +62,7 @@ public:
                        bool use_signed_distance_field = false,
                        double resolution = .02,
                        double collision_tolerance = 0.0,
-                       double max_propogation_distance = .25,
+                       double max_propagation_distance = .25,
                        double padding = 0.0, 
                        double scale = 1.0);
 
@@ -75,9 +75,9 @@ public:
                                     bool use_signed_distance_field,
                                     double resolution,
                                     double collision_tolerance,
-                                    double max_propogation_distance)
+                                    double max_propagation_distance)
   {
-    crobot_distance_->initialize(link_body_decompositions, size_x, size_y, size_z, use_signed_distance_field, resolution, collision_tolerance, max_propogation_distance);
+    crobot_distance_->initialize(link_body_decompositions, size_x, size_y, size_z, use_signed_distance_field, resolution, collision_tolerance, max_propagation_distance);
   }
 
   void checkSelfCollisionDistanceField(const collision_detection::CollisionRequest &req, 

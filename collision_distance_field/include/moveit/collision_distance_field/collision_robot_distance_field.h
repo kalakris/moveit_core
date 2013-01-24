@@ -52,7 +52,7 @@ static const double DEFAULT_SIZE_Z = 4.0;
 static const bool DEFAULT_USE_SIGNED_DISTANCE_FIELD = false;
 static const double DEFAULT_RESOLUTION = .02;
 static const double DEFAULT_COLLISION_TOLERANCE = 0.0;
-static const double DEFAULT_MAX_PROPOGATION_DISTANCE = .25;
+static const double DEFAULT_MAX_PROPAGATION_DISTANCE = .25;
 
 class CollisionRobotDistanceField : public CollisionRobot
 {
@@ -71,7 +71,7 @@ public:
                               bool use_signed_distance_field = DEFAULT_USE_SIGNED_DISTANCE_FIELD,
                               double resolution = DEFAULT_RESOLUTION,
                               double collision_tolerance = DEFAULT_COLLISION_TOLERANCE,
-                              double max_propogation_distance = DEFAULT_MAX_PROPOGATION_DISTANCE,
+                              double max_propagation_distance = DEFAULT_MAX_PROPAGATION_DISTANCE,
                               double padding = 0.0, 
                               double scale = 1.0);
 
@@ -84,7 +84,7 @@ public:
                   bool use_signed_distance_field,
                   double resolution,
                   double collision_tolerance,
-                  double max_propogation_distance);
+                  double max_propagation_distance);
 
   virtual void checkSelfCollision(const collision_detection::CollisionRequest &req, 
                                   collision_detection::CollisionResult &res, 
@@ -262,7 +262,7 @@ protected:
   bool use_signed_distance_field_;
   double resolution_;
   double collision_tolerance_;
-  double max_propogation_distance_;
+  double max_propagation_distance_;
 
   std::vector<BodyDecompositionConstPtr> link_body_decomposition_vector_;
   std::map<std::string, unsigned int> link_body_decomposition_index_map_;

@@ -59,7 +59,7 @@ public:
                               bool use_signed_distance_field = DEFAULT_USE_SIGNED_DISTANCE_FIELD,
                               double resolution = DEFAULT_RESOLUTION,
                               double collision_tolerance = DEFAULT_COLLISION_TOLERANCE,
-                              double max_propogation_distance = DEFAULT_MAX_PROPOGATION_DISTANCE);
+                              double max_propagation_distance = DEFAULT_MAX_PROPAGATION_DISTANCE);
 
   CollisionWorldDistanceField(const CollisionWorldDistanceField &other);
 
@@ -191,7 +191,7 @@ protected:
   bool use_signed_distance_field_;
   double resolution_;
   double collision_tolerance_;
-  double max_propogation_distance_;
+  double max_propagation_distance_;
 
   mutable boost::mutex update_cache_lock_;
   boost::shared_ptr<DistanceFieldCacheEntry> distance_field_cache_entry_;

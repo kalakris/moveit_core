@@ -157,7 +157,7 @@ private:
   typedef std::set<Eigen::Vector3i, compareEigen_Vector3i> VoxelSet;
   //VoxelSet object_voxel_locations_;
 
-  /// \brief Structure used to hold propogation frontier
+  /// \brief Structure used to hold propagation frontier
   std::vector<std::vector<Eigen::Vector3i> > bucket_queue_;
   std::vector<std::vector<Eigen::Vector3i> > negative_bucket_queue_;
   double max_distance_;

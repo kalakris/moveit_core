@@ -44,11 +44,11 @@ CollisionWorldHybrid::CollisionWorldHybrid(double size_x,
                                            bool use_signed_distance_field,
                                            double resolution,
                                            double collision_tolerance,
-                                           double max_propogation_distance) :
+                                           double max_propagation_distance) :
   CollisionWorldFCL()
 {
   cworld_distance_.reset(new collision_detection::CollisionWorldDistanceField(size_x, size_y, size_z, use_signed_distance_field, 
-                                                                              resolution, collision_tolerance, max_propogation_distance));
+                                                                              resolution, collision_tolerance, max_propagation_distance));
 }
 
 CollisionWorldHybrid::CollisionWorldHybrid(const CollisionWorldHybrid &other) :

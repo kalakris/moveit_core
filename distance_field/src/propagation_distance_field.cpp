@@ -273,7 +273,7 @@ void PropagationDistanceField::addNewObstacleVoxels(const std::vector<Eigen::Vec
           }
           else
           {
-            //this cell still has a valid non-obstacle cell, so we need to propogate from it
+            //this cell still has a valid non-obstacle cell, so we need to propagate from it
             negative_bucket_queue_[0].push_back(nloc);
           }
         }
