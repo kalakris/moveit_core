@@ -63,6 +63,12 @@ public:
 
   CollisionRobotDistanceField(const kinematic_model::KinematicModelConstPtr& kmodel);
 
+  /**
+   * \brief Create the CollisionRobotDistanceField
+   *
+   * @param link_body_decompositions is an optional parameter which will override the auto-generated set of
+   *        collision spheres per link
+   */
   CollisionRobotDistanceField(const kinematic_model::KinematicModelConstPtr& kmodel, 
                               const std::map<std::string, std::vector<CollisionSphere> >& link_body_decompositions,
                               double size_x = DEFAULT_SIZE_X, 
