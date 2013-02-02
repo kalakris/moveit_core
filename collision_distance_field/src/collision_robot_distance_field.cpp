@@ -673,6 +673,11 @@ CollisionRobotDistanceField::generateDistanceFieldCacheEntry(const std::string& 
       std::string link_name = kmodel_->getLinkModelsWithCollisionGeometry()[i]->getName();
       const kinematic_state::LinkState* link_state = dfce->state_->getLinkState(link_name);
       if(updated_group_map.find(link_name) != updated_group_map.end()) continue;
+
+      // disgusting hack
+      if (link_name == "torso_lift_link")
+        continue;
+
       non_group_link_decompositions.push_back(getPosedLinkBodyPointDecomposition(link_state));
       //ROS_INFO_STREAM("Adding link " << link_name << " with " << non_group_link_decompositions.back()->getCollisionPoints().size() << " points");
       std::vector<const kinematic_state::AttachedBody*> attached_bodies;
