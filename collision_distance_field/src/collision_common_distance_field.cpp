@@ -36,6 +36,7 @@
 
 #include <moveit/collision_distance_field/collision_common_distance_field.h>
 #include <boost/thread/mutex.hpp>
+#include <cassert>
 
 namespace collision_detection
 {
@@ -112,6 +113,49 @@ PosedBodyPointDecompositionVectorPtr getAttachedBodyPointDecomposition(const kin
     ret->updatePose(ret->getSize()-1, att->getGlobalCollisionBodyTransforms()[i]);
   }
   return ret;
+}
+
+void getBodySphereVisualizationMarkers(boost::shared_ptr<const GroupStateRepresentation> gsr,
+                                       const std::string& frame_id,
+                                       const ros::Time& time_stamp,
+                                       visualization_msgs::MarkerArray& marker_array)
+{
+  marker_array.markers.clear();
+  if (!gsr)
+    return;
+  for (size_t i=0; i<gsr->link_body_decompositions_.size(); ++i)
+  {
+    if (!gsr->link_body_decompositions_[i])
+      continue;
+    const EigenSTL::vector_Vector3d& sphere_centers = gsr->link_body_decompositions_[i]->getSphereCenters();
+    const std::vector<double>& sphere_radii = gsr->link_body_decompositions_[i]->getSphereRadii();
+    assert(sphere_centers.size() == sphere_radii.size());
+    for (size_t j=0; j<sphere_centers.size(); ++j)
+    {
+      visualization_msgs::Marker m;
+      m.header.frame_id = frame_id;
+      m.header.stamp = time_stamp;
+      m.ns = gsr->dfce_->link_names_[i];
+      m.id = j;
+      m.type = visualization_msgs::Marker::SPHERE;
+      m.action = visualization_msgs::Marker::ADD;
+      m.color.a = 0.5;
+      m.color.r = 0.0;
+      m.color.g = 0.0;
+      m.color.b = 1.0;
+      m.pose.orientation.w = 1.0;
+      m.pose.orientation.x = 0.0;
+      m.pose.orientation.y = 0.0;
+      m.pose.orientation.z = 0.0;
+      m.pose.position.x = sphere_centers[j](0);
+      m.pose.position.y = sphere_centers[j](1);
+      m.pose.position.z = sphere_centers[j](2);
+      m.scale.x = 2 * sphere_radii[j];
+      m.scale.y = 2 * sphere_radii[j];
+      m.scale.z = 2 * sphere_radii[j];
+      marker_array.markers.push_back(m);
+    }
+  }
 }
 
 }

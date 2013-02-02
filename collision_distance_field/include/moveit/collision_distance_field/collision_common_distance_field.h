@@ -98,6 +98,10 @@ PosedBodySphereDecompositionVectorPtr getAttachedBodySphereDecomposition(const k
 PosedBodyPointDecompositionVectorPtr getAttachedBodyPointDecomposition(const kinematic_state::AttachedBody* att,
                                                                        double resolution);
 
+void getBodySphereVisualizationMarkers(boost::shared_ptr<const GroupStateRepresentation> gsr,
+                                       const std::string& frame_id,
+                                       const ros::Time& time_stamp,
+                                       visualization_msgs::MarkerArray& marker_array);
 
 }
 #endif
